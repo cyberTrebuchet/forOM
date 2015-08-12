@@ -9,6 +9,9 @@ var request = require("request");
 var _       = require("underscore");
 var db      = require("sqlite3");
 
+//damn css
+app.use(express.static(__dirname + '/views'));
+
 //middleware
 var bodyParser = require('body-parser');
 var urlencodedBodyParser = bodyParser.urlencoded({extended: false});
@@ -27,8 +30,13 @@ app.get("/", function(req, res) {
   res.send(html);
 });
 
-app.get("/search", function(req, res){
+app.post("/topics", function(req, res) {
+  console.log(req.body);
+  
+});
 
-  console.log("Search term(s): ", req.query.zip);
+app.get("/search", function(req, res) {
+
+  console.log("Search term(s): ", req.query);
 
 });
