@@ -10,7 +10,7 @@ var _       = require("underscore");
 var db      = require("sqlite3");
 
 //damn css
-app.use(express.static(__dirname + '/views'));
+app.use(express.static('views'));
 
 //middleware
 var bodyParser = require('body-parser');
@@ -32,7 +32,12 @@ app.get("/", function(req, res) {
 
 app.post("/topics", function(req, res) {
   console.log(req.body);
+
   
+
+  var html = fs.readFileSync("views/index.html");
+  var render = ejs.render(html, {topics: topics});
+  res.send(rendered);
 });
 
 app.get("/search", function(req, res) {
