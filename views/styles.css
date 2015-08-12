@@ -1,0 +1,36 @@
+body {
+  margin: auto;
+  text-align: center;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+}
+
+header {
+
+  margin: 3em;
+}
+
+h1 {
+  font-size: 6em;
+  font-family: Garamond;
+}
+
+ul {
+  position: relative;
+  top: -2em;
+  left: -1em;
+}
+
+li {
+  display: inline-block;
+  list-style: none;
+  margin: 1em;
+}
+
+img {
+  width: 90%;
+}
+
