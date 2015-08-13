@@ -27,7 +27,7 @@ app.listen(3000, function() {
 
 //routes
 app.get("/", function(req, res) {
-  db.all("SELECT * FROM topics", function(err, rows){
+  db.all("SELECT * FROM topics ORDER BY id DESC", function(err, rows){
     if (err) {console.log(err)} else {
       var topics = rows;
       var html = fs.readFileSync("views/index.html", "utf8");
@@ -45,6 +45,16 @@ app.post("/topics", function(req, res) {
 
 app.get("/topics/:id", function(req, res) {
   console.log(req.params.id);
+});
+
+// post top-level comments
+app.post("/topics/:id/comments", function(req, res) {
+
+});
+
+// post nested comments
+app.post("/topics/:t_id/comments/:c_id/comments", function(req, res) {
+
 });
 
 app.get("/search", function(req, res) {
