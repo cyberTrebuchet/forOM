@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="container"> <!-- Is it bad form to classify a body? -->
+<body class="container"> <!-- Is it bad form to classify the body? -->
 
   <header>
     <h1> Lately at the <button>forOM</button> </h1>
@@ -27,6 +27,15 @@
     <input name="author" type="text" placeholder="Username...">
     <input type="submit">
   </form>
+
+  <% _.each(topics, function(topic){ %>
+    <article class="topic">
+      <button class="approval" href="/approval/:id"> <%= topic.approval %> </button>
+      <a href="/topics/:id"> <%= topic.title %> </a>
+      <a href="/users/:author"> <%= topic.author %> </a>
+      <a href=""> <%= topic.comments %> comments... </a>
+    </article>
+  <% }); %>
 
 </body>
 </html>
