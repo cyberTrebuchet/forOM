@@ -33,9 +33,10 @@
       <button class="approval" href="/approval/:id"> <%= topic.approval %> </button>
       <a href="/topics/:id"> <%= topic.title %> </a>
       <a href="/users/:author"> <%= topic.author %> </a>
-      <a href=""> <%= topic.comments %> comments... </a>
+      <a href="/topics/:id"> <%= topic.comments %> comments... </a>
     </article>
   <% }); %>
 
 </body>
+<script src="script.js"></script>
 </html>
