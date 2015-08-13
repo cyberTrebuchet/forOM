@@ -13,7 +13,7 @@
     <!--[if gt IE 8]><!-->
         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
     <!--<![endif]-->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body class="container"> <!-- Is it bad form to classify the body? -->
@@ -28,15 +28,15 @@
     <input type="submit">
   </form>
 
-  <% _.each(topics, function(topic){ %>
+  <% topics.forEach(function(topic){ %>
     <article class="topic">
-      <button class="approval" href="/approval/:id"> <%= topic.approval %> </button>
-      <a href="/topics/:id"> <%= topic.title %> </a>
-      <a href="/users/:author"> <%= topic.author %> </a>
-      <a href="/topics/:id"> <%= topic.comments %> comments... </a>
+      <button class="approval" href="/approval/<%=topic.id%>"> <%= topic.approval %> </button>
+      <a href="/topics/<%=topic.id%>"> <%= topic.title %> </a> by 
+      <a href="/users/<%=topic.author%>"> <%= topic.author %> </a> with 
+      <a href="/topics/<%=topic.id%>"> <%= topic.comments %> comments... </a>
     </article>
   <% }); %>
 
 </body>
-<script src="script.js"></script>
+<script src="/script.js"></script>
 </html>
