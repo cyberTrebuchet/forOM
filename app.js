@@ -29,9 +29,8 @@ app.listen(3000, function() {
 app.get("/", function(req, res) {
   db.all("SELECT * FROM topics ORDER BY id DESC", function(err, rows){
     if (err) {console.log(err)} else {
-      var topics = rows;
       var html = fs.readFileSync("views/index.html", "utf8");
-      var rendered = ejs.render(html, {topics: topics});
+      var rendered = ejs.render(html, {topics: rows});
       res.send(rendered);
     }
   });
@@ -43,8 +42,16 @@ app.post("/topics", function(req, res) {
   });
 });
 
-app.get("/topics/:id", function(req, res) {
-  console.log(req.params.id);
+app.get("/topics/:t_id", function(req, res) {
+  console.log(req.params.t_id);
+  db.all("SELECT * FROM comments INNER JOIN topics ON topics.topic_id = comments.parent_id WHERE parent_id=?", "t" + req.params.t_id, function(err, rows){
+    if (err) {console.log(err)} else {
+      console.log(rows);
+      var html = fs.readFileSync("views/topic.html", "utf8");
+      var rendered = ejs.render(html, {comments: rows});
+      res.send(rendered);
+    }
+  });
 });
 
 // post top-level comments
