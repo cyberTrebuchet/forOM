@@ -20,21 +20,21 @@
 
   <header>
     <h1> Lately at the <button>forOM</button> </h1>
-    <h5> Liberty and Truth! </h5>
+    <h5> For Liberty and Truth! </h5>
   </header>
 
-  <form method="POST" action="/topics">
-    <input name="topic" type="text" placeholder="New topic...">
-    <input name="author" type="text" placeholder="Username...">
+  <form method="POST" action="/blinks">
+    <input name="blink" type="text" placeholder="quick blink!">
+    <input name="author" type="text" placeholder="username...">
     <input type="submit">
   </form>
 
-  <% topics.forEach(function(topic){ %>
-    <article class="topic">
-      <button class="approval" href="/approval/<%=topic.id%>"> <%= topic.approval %> </button>
-      <a href="/topics/<%=topic.id%>"> <%= topic.title %> </a> by 
-      <a href="/users/<%=topic.author%>"> <%= topic.author %> </a> with 
-      <a href="/topics/<%=topic.id%>"> <%= topic.comments %> comments... </a>
+  <% blinks.forEach(function(blink){ %>
+    <article class="blink">
+      <button class="nods" href="/blinks/<%=blink.id%>/nods"> <%= blink.nods %> </button>
+      <a href="/blinks/<%=blink.id%>"> <%= blink.title %> </a> by 
+      <a href="/users/<%=blink.author.replace(/ /g, '_')%>"> <%= blink.author %> </a> with 
+      <a href="/blinks/<%=blink.id%>"> <%= blink.winks %> wink<%= blink.winks === 1 ? '' : 's' %>... </a>
     </article>
   <% }); %>
 

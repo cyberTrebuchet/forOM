@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> ~ forOM ~ <%= comments[0].title %> </title>
+    <title> ~ forOM ~ </title>
 
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <!--[if lte IE 8]>
@@ -20,21 +20,21 @@
 
   <header>
     <h1> Lately at the <button>forOM</button> </h1>
-    <h5> <%= comments[0].title %> </h5>
+    <h5> For Liberty and Truth! </h5>
   </header>
 
-  <form method="POST" action="/topics/<%=id%>/comments">
-    <input name="comment" type="text" placeholder="New comment...">
-    <input name="author" type="text" placeholder="Username...">
+  <form method="POST" action="/blinks">
+    <input name="blink" type="text" placeholder="quick blink!">
+    <input name="author" type="text" placeholder="username...">
     <input type="submit">
   </form>
 
-  <% comments.forEach(function(comment){ %>
-    <article class="comment">
-      <button class="approval" href="/approval/<%=comment.id%>"> <%= comment.approval %> </button>
-      <a href="/topics/<%=comment.id%>"> <%= comment.title %> </a> by 
-      <a href="/users/<%=comment.author%>"> <%= comment.author %> </a> with 
-      <a href="/topics/<%=comment.id%>"> <%= comment.comments %> sub-comments... </a>
+  <% blinks.forEach(function(blink){ %>
+    <article class="blink">
+      <button class="nods" href="/nods/<%=blink.id%>"> <%= blink.nods %> </button>
+      <a href="/blinks/<%=blink.id%>"> <%= blink.title %> </a> by 
+      <a href="/users/<%=blink.author%>"> <%= blink.author %> </a> with 
+      <a href="/blinks/<%=blink.id%>"> <%= blink.winks %> winks... </a>
     </article>
   <% }); %>
 

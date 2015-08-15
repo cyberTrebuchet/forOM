@@ -1,8 +1,8 @@
 CREATE TABLE blinks (
   id integer PRIMARY KEY AUTOINCREMENT,
   parent_id integer,
-  approval integer,
+  nods integer,
   title text,
   author text,
-  comments integer
+  winks integer
 );
