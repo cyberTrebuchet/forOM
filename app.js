@@ -63,12 +63,19 @@ app.get("/blinks/:id", function(req, res) {
 });
 
 app.post("/blinks/:parent_id/winks", function(req, res) {
-  console.log(req);
-  var path = "/blinks/" + req.params.parent_id;
-  console.log(path);
-  db.run("INSERT INTO blinks (parent_id, nods, title, author, winks) VALUES (?,?,?,?,?)", req.params.parent_id, 0, req.body.title, req.body.author, 0, function(err){
-    if (err) {console.log(err)} else {res.redirect(path)}
-  });
+  var parent_id = req.params.parent_id;
+  db.run("INSERT INTO blinks (parent_id, nods, title, author, winks) VALUES (?,?,?,?,?)", parent_id, 0, req.body.title, req.body.author, 0, function(err){
+    if (err) {console.log(err)}
+  }).get("SELECT * FROM blinks WHERE id=?", parent_id, function(err, row){
+    if (err) {console.log(err)} else {
+      console.log(row);
+      db.run("UPDATE blinks SET winks=? WHERE id=?", row.winks + 1, row.id, function(err){
+        if (err) {console.log(err)} else {
+          res.redirect("/blinks/" + parent_id);
+        }
+      });
+    }
+  })
 });
 
 app.get("/search", function(req, res) {
