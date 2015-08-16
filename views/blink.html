@@ -19,22 +19,22 @@
 <body class="container"> <!-- Is it bad form to classify the body? -->
 
   <header>
-    <h1> Lately at the <button>forOM</button> </h1>
-    <h5> For Liberty and Truth! </h5>
+    <h1> Lately at the <button href="/">forOM</button> </h1>
+    <h3> For Liberty and Truth! </h3>
   </header>
 
-  <form method="POST" action="/blinks">
-    <input name="blink" type="text" placeholder="quick blink!">
+  <form method="POST" action="/blinks/<%=blinks[0].parent_id%>/winks">
+    <input name="title" type="text" placeholder="wink back!">
     <input name="author" type="text" placeholder="username...">
     <input type="submit">
   </form>
 
   <% blinks.forEach(function(blink){ %>
     <article class="blink">
-      <button class="nods" href="/nods/<%=blink.id%>"> <%= blink.nods %> </button>
+      <button class="nods" href="/blinks/<%=blink.id%>/nods"> <%= blink.nods %> </button>
       <a href="/blinks/<%=blink.id%>"> <%= blink.title %> </a> by 
-      <a href="/users/<%=blink.author%>"> <%= blink.author %> </a> with 
-      <a href="/blinks/<%=blink.id%>"> <%= blink.winks %> winks... </a>
+      <a href="/users/<%=blink.author.replace(/ /g, '_')%>"> <%= blink.author %> </a> with 
+      <a href="/blinks/<%=blink.id%>"> <%= blink.winks %> wink<%= blink.winks === 1 ? '' : 's' %>... </a>
     </article>
   <% }); %>
 
