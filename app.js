@@ -62,6 +62,17 @@ app.get("/blinks/:id", function(req, res) {
   });
 });
 
+app.get("/blinks/:id/:nods/:parent_id", function(req, res) {
+  var id = req.params.id;
+  db.run("UPDATE blinks SET nods=? WHERE id=?", parseInt(req.params.nods) + 1, id, function(err){
+    if (err) {console.log(err)} else if(id){
+      res.redirect("/blinks/" + req.params.parent_id);
+    } else {
+      res.redirect("/");
+    }
+  });
+});
+
 app.post("/blinks/:parent_id/winks", function(req, res) {
   var parent_id = req.params.parent_id;
   db.run("INSERT INTO blinks (parent_id, nods, title, author, winks) VALUES (?,?,?,?,?)", parent_id, 0, req.body.title, req.body.author, 0, function(err){
