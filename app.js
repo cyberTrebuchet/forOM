@@ -42,6 +42,16 @@ app.post("/blinks", function(req, res) {
   });
 });
 
+app.get("/popular", function(req, res) {
+  db.all("SELECT * FROM blinks WHERE parent_id=0 ORDER BY nods DESC", function(err, rows){
+    if (err) {console.log(err)} else {
+      var html = fs.readFileSync("views/index.html", "utf8");
+      var rendered = ejs.render(html, {blinks: rows});
+      res.send(rendered);
+    }
+  });
+});
+
 app.get("/blinks/:id", function(req, res) {
   db.all("SELECT * FROM blinks WHERE parent_id=?", req.params.id, function(err, rows){
     var html = fs.readFileSync("views/blink.html", "utf8");
@@ -52,13 +62,33 @@ app.get("/blinks/:id", function(req, res) {
         id        : req.params.id,  
         parent_id : req.params.id, // for the form
         nods      : 0,
-        title     : "Here's a sample wink, short and sweet. Any thoughts?",
+        title     : "Here's a sample reply, short and sweet. Any thoughts?",
         author    : "Thompson!",
         winks     : 0
       });
       var rendered = ejs.render(html, {blinks: rows});
     }
     res.send(rendered);
+  });
+});
+
+app.get("/popular/:parent_id", function(req, res) {
+  db.all("SELECT * FROM blinks WHERE parent_id=? ORDER BY nods DESC", req.params.parent_id, function(err, rows){
+    if (err) {console.log(err)} else {
+      var html = fs.readFileSync("views/index.html", "utf8");
+      var rendered = ejs.render(html, {blinks: rows});
+      res.send(rendered);
+    }
+  });
+});
+
+app.get("/back/:parent_id", function(req, res) {
+  db.get("SELECT * FROM blinks WHERE id=?", req.params.parent_id, function(err, row) {
+    if (err) {console.log(err)} else if (row.parent_id) {
+      res.redirect("/blinks/" + row.parent_id)
+    } else {
+      res.redirect("/");
+    }
   });
 });
 

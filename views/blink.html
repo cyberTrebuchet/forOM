@@ -20,7 +20,7 @@
 
   <header>
     <h1> Lately at the <a href="/"><button>forOM</button></a> </h1>
-    <h3> For Liberty and Truth! </h3>
+    <h3> Post replies here! </h3>
   </header>
 
   <form method="POST" action="/blinks/<%=blinks[0].parent_id%>/winks">
@@ -28,6 +28,18 @@
     <input name="author" type="text" placeholder="username">
     <input type="submit">
   </form>
+
+  <a href="/popular/<%=blinks[0].parent_id%>">
+    <button class="options"> Show most popular </button>
+  </a>
+
+  <a href="/blinks/<%=blinks[0].parent_id%>">
+    <button class="options"> Show most recent </button>
+  </a>
+
+  <a href="/back/<%=blinks[0].parent_id%>">
+    <button class="options"> Go back </button>
+  </a>
 
   <% blinks.forEach(function(blink){ %>
     <article class="blink">
@@ -41,5 +53,4 @@
   <% }); %>
 
 </body>
-<script src="/script.js"></script>
 </html>
