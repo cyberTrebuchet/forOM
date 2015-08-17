@@ -95,7 +95,7 @@ app.get("/back/:parent_id", function(req, res) {
 app.get("/blinks/:id/:nods/:parent_id", function(req, res) {
   var id = req.params.id;
   db.run("UPDATE blinks SET nods=? WHERE id=?", parseInt(req.params.nods) + 1, id, function(err){
-    if (err) {console.log(err)} else if(id){
+    if (err) {console.log(err)} else if (parseInt(req.params.parent_id)) {
       res.redirect("/blinks/" + req.params.parent_id);
     } else {
       res.redirect("/");
