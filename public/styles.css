@@ -18,6 +18,10 @@ form {
   margin: 1em;
 }
 
+.pure-button-primary {
+  border-radius: 0.25em;
+}
+
 .nods {
   float: left;
   position: relative;
@@ -34,7 +38,7 @@ article {
   margin: 1em;
   padding: 1em;
   background-color: #abefab;
-  border-radius: 1em;
+  border-radius: 0.5em;
 }
 
 a {
