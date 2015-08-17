@@ -16,35 +16,34 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 
-<body class="container">
+<body>
 
   <header>
-    <h1> Lately at the <a href="/"><button>forOM</button></a> </h1>
-    <h3> Big topics go here! </h3>
+    <h1> <a href="/"><button class="pure-button pure-button-primary">forOM</button></a> </h1>
   </header>
 
-  <form method="POST" action="/blinks">
+  <form class="pure-form" method="POST" action="/blinks">
     <input name="title" type="text" placeholder="quick blink!">
     <input name="author" type="text" placeholder="username">
-    <input type="submit">
+    <button type="submit" class="pure-button pure-button-primary">blink!</button>
   </form>
 
   <a href="/popular">
-    <button class="options"> Show most popular </button>
+    <button class="pure-button options"> Show most popular </button>
   </a>
 
   <a href="/">
-    <button class="options"> Show most recent </button>
+    <button class="pure-button options"> Show most recent </button>
   </a>
 
   <% blinks.forEach(function(blink){ %>
     <article class="blink">
       <a href="/blinks/<%=blink.id%>/<%=blink.nods%>/<%=blink.parent_id%>">
-        <button class="nods"> <%= blink.nods %> </button>
+        <button class="pure-button pure-button-primary nods"> <%= blink.nods %> nods </button>
       </a>
       <a href="/blinks/<%=blink.id%>"> <%= blink.title %> </a> by 
-      <a href="/users/<%=blink.author.replace(/ /g, '_')%>"> <%= blink.author %> </a> with 
-      <a href="/blinks/<%=blink.id%>"> <%= blink.winks %> wink<%= blink.winks === 1 ? '' : 's' %>... </a>
+      <a href="/users/<%=blink.author.replace(/ /g, '_')%>"> <%= blink.author %> </a>
+      <a href="/blinks/<%=blink.id%>"> <button class="pure-button pure-button-primary winks"> <%= blink.winks %> wink<%= blink.winks === 1 ? '' : 's' %>... </button> </a>
     </article>
   <% }); %>
 
