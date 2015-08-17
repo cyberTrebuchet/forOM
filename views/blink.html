@@ -48,8 +48,7 @@
       <a href="/blinks/<%=blink.id%>/<%=blink.nods%>/<%=blink.parent_id%>">
         <button class="pure-button pure-button-primary nods"> <%= blink.nods %> nods </button>
       </a>
-      <%= blink.title %> by 
-      <%= blink.author %>
+      <p> <%= blink.title %> by <%= blink.author %> </p>
       <a href="/blinks/<%=blink.id%>"> <button class="pure-button pure-button-primary winks"> <%= blink.winks %> wink<%= blink.winks === 1 ? '' : 's' %>... </button> </a>
     </article>
   <% }); %>
